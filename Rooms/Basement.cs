@@ -1,23 +1,28 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace NarrativeProject.Rooms
 {
-    internal class Bedroom : Room
+    internal class Basement : Room
     {
 
         internal override string CreateDescription() =>
-@"You are in your bedroom.
-The [door] in front of you leads to your living room.
-Your private [bathroom] is to your left.
-From your closet, you see the [attic].
+@"You are in the basement.
+The smell of rotting meat and death overwhelms your nose.
+It's very dark in the room, probably for the best.
+Despite the darkness you have a vague awareness of your surroundings.
+To your left is [something cold]
 ";
 
         internal override void ReceiveChoice(string choice)
         {
             switch (choice)
             {
-                case "bathroom":
-                    Console.WriteLine("You enter the bathroom.");
+                case "kitchen":
+                    Console.WriteLine("You enter the kitchen.");
                     Game.Transition<Bathroom>();
                     break;
                 case "door":
@@ -28,10 +33,10 @@ From your closet, you see the [attic].
                     else
                     {
                         Console.WriteLine("You open the door with the key and leave your bedroom.");
-                        Game.Transition<LivingRoom>();
+                        Game.Finish();
                     }
                     break;
-                case "attic":
+                case "basement":
                     Console.WriteLine("You go up and enter your attic.");
                     Game.Transition<AtticRoom>();
                     break;
